@@ -1,0 +1,86 @@
+<div class="list row">
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Procurar por Medico"
+          [(ngModel)]="nome"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchNome()"
+          >
+            Pesquisar Nome
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Procurar por Especialidade"
+          [(ngModel)]="especialidade"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchEspecialidade()"
+          >
+            Pesquisar Especialidade
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <h4>Lista de Medicos</h4>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let medico of medicos; let i = index"
+          [class.active]="i == currentIndex"
+          (click)="setActiveMedico(medico, i)"
+        >
+          {{ medico.nome }}
+        </li>
+      </ul>
+  
+      <button class="m-3 btn btn-sm btn-danger" (click)="removeAllMedicos()">
+        Remover Todos
+      </button>
+    </div>
+    <div class="col-md-6">
+      <div *ngIf="currentMedico">
+        <h4>Tutorial</h4>
+        <div>
+          <label><strong>Nome:</strong></label> {{ currentMedico.nome }}
+        </div>
+        <div>
+          <label><strong>Data de Nascimento:</strong></label>
+          {{ currentMedico.dataNascimento }}
+        </div>
+        <div>
+            <label><strong>Especialidade:</strong></label>
+            {{ currentMedico.especialidade }}
+          </div>
+        <div>
+          <label><strong>Ativo:</strong></label>
+          {{ currentMedico.ativo ? "Sim" : "Nao" }}
+        </div>
+  
+        <a class="badge badge-warning" routerLink="/medicos/{{ currentMedico.id }}">
+          Editar
+        </a>
+      </div>
+  
+      <div *ngIf="!currentMedico">
+        <br />
+        <p>Por Favor clique em um Medico...</p>
+      </div>
+    </div>
+  </div>
