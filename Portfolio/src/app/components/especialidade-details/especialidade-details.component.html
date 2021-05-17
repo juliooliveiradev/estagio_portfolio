@@ -1,0 +1,65 @@
+<div>
+    <div *ngIf="currentEspecialidade.id" class="edit-form">
+      <h4>Especialidade</h4>
+      <form>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            [(ngModel)]="currentEspecialidade.nome"
+            name="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <input
+            type="text"
+            class="form-control"
+            id="descricao"
+            [(ngModel)]="currentEspecialidade.descricao"
+            name="descricao"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Ativo:</strong></label>
+          {{ currentEspecialidade.ativo ? "Sim" : "Nao" }}
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="currentEspecialidade.ativo"
+        (click)="updateAtivo(false)"
+      >
+        Nao
+      </button>
+      <button
+        *ngIf="!currentEspecialidade.ativo"
+        class="badge badge-primary mr-2"
+        (click)="updateAtivo(true)"
+      >
+        Sim
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteEspecialidade()">
+        Deletar
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateEspecialidade()"
+      >
+        Mudar
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentEspecialidade.id">
+      <br />
+      <p>Nao é possivel acessar essa especialidade...</p>
+    </div>
+  </div>

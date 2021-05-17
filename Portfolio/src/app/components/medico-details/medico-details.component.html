@@ -1,0 +1,76 @@
+<div>
+    <div *ngIf="currentMedico.id" class="edit-form">
+      <h4>Medicos</h4>
+      <form>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nome"
+            [(ngModel)]="currentMedico.nome"
+            name="nome"
+          />
+        </div>
+        <div class="form-group">
+          <label for="dataNascimento">Data de Nascimento</label>
+          <input
+            type="date"
+            class="form-control"
+            id="dataNascimento"
+            [(ngModel)]="currentMedico.dataNascimento"
+            name="dataNascimento"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="especialidade">Especialidade</label>
+            <input
+              type="text"
+              class="form-control"
+              id="especialidade"
+              [(ngModel)]="currentMedico.especialidade"
+              name="especialidade"
+            />
+        </div>
+  
+        <div class="form-group">
+          <label><strong>Ativo:</strong></label>
+          {{ currentMedico.ativo ? "Sim" : "Nao" }}
+        </div>
+      </form>
+  
+      <button
+        class="badge badge-primary mr-2"
+        *ngIf="!currentMedico.ativo"
+        (click)="updateAtivo(true)"
+      >
+       Sim
+      </button>
+      <button
+        *ngIf="currentMedico.ativo"
+        class="badge badge-primary mr-2"
+        (click)="updateAtivo(false)"
+      >
+        Nao
+      </button>
+  
+      <button class="badge badge-danger mr-2" (click)="deleteMedico()">
+        Deletar
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateMedico()"
+      >
+        Alterar
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentMedico.id">
+      <br />
+      <p>Cannot access this Tutorial...</p>
+    </div>
+  </div>
